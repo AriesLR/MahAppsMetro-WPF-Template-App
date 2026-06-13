@@ -5,9 +5,14 @@
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 Title="MainWindow"
-                 Width="800"
-                 Height="450"
+                 xmlns:config="clr-namespace:Metro_WPF_Template_App.Resources.Config"
+                 xmlns:viewmodels="clr-namespace:Metro_WPF_Template_App.ViewModels"
+                 d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+                 Title="{Binding Source={x:Static config:AppConfig.TitleAppVersion}, StringFormat='Metro-WPF-Template-App \{0\}'}"
+                 Width="1200"
+                 Height="750"
+                 MinWidth="1200"
+                 MinHeight="750"
                  WindowStartupLocation="CenterScreen"
                  mc:Ignorable="d">
 
@@ -21,17 +26,17 @@
 
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
-            <!-- Title Bar Buttons / Leaving this here so I don't have to remake it if I use it again -->
-            <Button Click="OpenBuyMeACoffee_Click">
-                <iconPacks:PackIconSimpleIcons Width="22" Height="22" Kind="Buymeacoffee">
-                    <iconPacks:PackIconSimpleIcons.ToolTip>
+            <!-- Title Bar Button(s) -->
+            <Button Click="AppSettingsFlyout_Click">
+                <iconPacks:PackIconMaterial Width="22" Height="22" Kind="Cog">
+                    <iconPacks:PackIconMaterial.ToolTip>
                         <TextBlock>
                             <Run Text="Buy Me a Coffee" Foreground="{DynamicResource MahApps.Brushes.Gray.SemiTransparent}" />
                             <LineBreak />
                             <Run Text="If you like my work, consider buying me a coffee." />
                         </TextBlock>
-                    </iconPacks:PackIconSimpleIcons.ToolTip>
-                </iconPacks:PackIconSimpleIcons>
+                    </iconPacks:PackIconMaterial.ToolTip>
+                </iconPacks:PackIconMaterial>
             </Button>
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
