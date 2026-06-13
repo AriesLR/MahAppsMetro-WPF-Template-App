@@ -9,7 +9,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <!-- Default Theme -->
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
                 <!-- Custom Theme -->
                 <!-- Place theme.xaml in Resources/Themes/Dark.Red.xaml -->
                 <!--<ResourceDictionary Source="pack://application:,,,/Metro_WPF_Template_App;component/Resources/Themes/Dark.DarkOliveGreen.xaml" />-->
