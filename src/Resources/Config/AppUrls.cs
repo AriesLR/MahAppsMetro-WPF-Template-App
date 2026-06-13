@@ -3,10 +3,10 @@
     public static class AppUrls
     {
         // Github Backend
-        public const string UpdateUrl = "https://raw.githubusercontent.com/AriesLR/VSSuite/refs/heads/main/docs/version/update.json";
+        public const string UpdateUrl = "https://raw.githubusercontent.com/AriesLR/MahAppsMetro-WPF-Template-App/refs/heads/main/docs/version/update.json";
 
         // Other URLs
-        public const string GithubRepoUrl = "https://github.com/AriesLR/VSSuite";
+        public const string GithubRepoUrl = "https://github.com/AriesLR/MahAppsMetro-WPF-Template-App";
 
         public const string BuyMeACoffeeUrl = "https://buymeacoffee.com/arieslr";
 
