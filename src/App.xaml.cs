@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using Application = System.Windows.Application;
 
 namespace Metro_WPF_Template_App
 {
@@ -10,5 +8,4 @@ namespace Metro_WPF_Template_App
     public partial class App : Application
     {
     }
-
 }
