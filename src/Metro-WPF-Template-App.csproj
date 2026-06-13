@@ -1,13 +1,43 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <RootNamespace>Metro_WPF_Template_App</RootNamespace>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <RootNamespace>Metro_WPF_Template_App</RootNamespace>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+
+        <!-- Single file publish settings -->
+        <PublishSingleFile>true</PublishSingleFile>
+        <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+        <SelfContained>false</SelfContained>
+        <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
+
+        <!-- Generate assembly info -->
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+
+        <!-- Versioning -->
+        <AssemblyVersion>0.0.1.0</AssemblyVersion>
+        <FileVersion>0.0.1.0</FileVersion>
+        <InformationalVersion>0.0.1</InformationalVersion>
+        <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+
+        <!-- File Info -->
+		<Title>Metro-WPF-Template-App</Title>
+        <AssemblyName>Metro-WPF-Template-App</AssemblyName>
+        <Product>Metro-WPF-Template-App</Product>
+        <Description>This is an application template made by AriesLR.</Description>
+        <Company>AriesLR</Company>
+        <Authors>AriesLR</Authors>
+        <Copyright>Copyright 2026 AriesLR</Copyright>
+		
+        <!--<ApplicationIcon>appicon.ico</ApplicationIcon>-->
+		
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+    </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.4.11" />
