@@ -1,13 +1,11 @@
 ﻿using MahApps.Metro.Controls;
 using Metro_WPF_Template_App.Resources.Config;
 using Metro_WPF_Template_App.Resources.Functions.Services;
+using Metro_WPF_Template_App.ViewModels;
 using System.Windows;
 
 namespace Metro_WPF_Template_App
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : MetroWindow
     {
         public static bool _isLoaded = false;
@@ -15,6 +13,7 @@ namespace Metro_WPF_Template_App
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
 
             this.Loaded += (s, e) =>
             {
@@ -49,6 +48,12 @@ namespace Metro_WPF_Template_App
         private async void CheckForUpdates_Click(object sender, RoutedEventArgs e)
         {
             await UpdateService.CheckForUpdatesAsync(AppUrls.UpdateUrl);
+        }
+
+        // App Settings Button Click
+        private void AppSettingsFlyout_Click(object? sender, RoutedEventArgs e)
+        {
+            ((MainWindowViewModel)DataContext).OpenAppSettingsFlyout();
         }
 
         // ============ App Settings Event Handlers ============
