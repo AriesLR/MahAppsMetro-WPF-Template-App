@@ -2,6 +2,10 @@
 using MahApps.Metro.Controls.Dialogs;
 using Application = System.Windows.Application;
 
+/// <summary>
+/// MessageService.cs holds the methods used to trigger/construct dialogs within the application.
+/// </summary>
+
 namespace Metro_WPF_Template_App.Resources.Functions.Services
 {
     public static class MessageService

@@ -1,8 +1,10 @@
-﻿using MahApps.Metro.Controls;
+﻿using ControlzEx.Theming;
+using MahApps.Metro.Controls;
 using Metro_WPF_Template_App.Resources.Config;
 using Metro_WPF_Template_App.Resources.Functions.Services;
 using Metro_WPF_Template_App.ViewModels;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Metro_WPF_Template_App
 {
@@ -15,6 +17,9 @@ namespace Metro_WPF_Template_App
             InitializeComponent();
             DataContext = new MainWindowViewModel();
 
+            //BaseThemeDropdown.ItemsSource = ThemeService.AvailableBaseThemes;
+            AccentColorDropdown.ItemsSource = ThemeService.AvailableAccents;
+
             this.Loaded += (s, e) =>
             {
                 this.Dispatcher.BeginInvoke(new Action(async () =>
@@ -22,6 +27,8 @@ namespace Metro_WPF_Template_App
                     AppSettingsService.InitializeAppSettings(this, ref _isLoaded);
                 }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
             };
+
+            SyncUIThemeSelections();
         }
 
         // ============ Button Clicks ============
@@ -66,6 +73,33 @@ namespace Metro_WPF_Template_App
             AppSettingsService.CurrentSettings.CheckForUpdatesOnStartup = CheckAppUpdatesToggle.IsOn;
 
             AppSettingsService.SaveAppSettings(AppSettingsService.CurrentSettings);
+        }
+
+        // ============ Theme Helpers ============
+        private void SyncUIThemeSelections()
+        {
+            var settings = AppSettingsService.CurrentSettings;
+
+            //BaseThemeDropdown.SelectedItem = settings.BaseTheme;
+
+            AccentColorDropdown.SelectedItem = ThemeService.AvailableAccents
+                .FirstOrDefault(t => string.Equals(t.ColorScheme, settings.AccentColor, StringComparison.OrdinalIgnoreCase));
+        }
+
+        /*private void BaseThemeDropdown_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!_isLoaded || BaseThemeDropdown.SelectedItem is not string selectedBase)
+                return;
+
+            ThemeService.SetBaseTheme(selectedBase);
+        }*/
+
+        private void AccentColorDropdown_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!_isLoaded || AccentColorDropdown.SelectedItem is not Theme selectedAccent)
+                return;
+
+            ThemeService.SetAccentColor(selectedAccent.ColorScheme);
         }
 
         // End of Class

@@ -3,6 +3,10 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net.Http;
 
+/// <summary>
+/// UpdateService.cs holds the methods used for checking if the application has an update. This will use the URL set for "UpdateUrl" in the AppUrls.cs file.
+/// </summary>
+
 namespace Metro_WPF_Template_App.Resources.Functions.Services
 {
     public class UpdateService

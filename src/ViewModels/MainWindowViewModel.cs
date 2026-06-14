@@ -16,7 +16,7 @@ namespace Metro_WPF_Template_App.ViewModels
 
         public MainWindowViewModel()
         {
-            // Top Menu Items (Information, Modlist Tools, Mod Browser)
+            // Top Menu Items
 
             MenuItems =
             [
@@ -28,7 +28,7 @@ namespace Metro_WPF_Template_App.ViewModels
                 }
             ];
 
-            // Bottom Menu Items (App Settings, Changelog, Tips)
+            // Bottom Menu Items
             OptionsMenuItems =
             [
                 new MenuItem

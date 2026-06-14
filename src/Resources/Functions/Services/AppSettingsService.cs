@@ -3,6 +3,10 @@ using Metro_WPF_Template_App.Resources.DataModels;
 using Newtonsoft.Json;
 using System.IO;
 
+/// <summary>
+/// AppSettingsService.cs holds the core methods for initializing, loading, and saving the application's settings to file.
+/// </summary>
+
 namespace Metro_WPF_Template_App.Resources.Functions.Services
 {
     public static class AppSettingsService

@@ -1,4 +1,8 @@
-﻿namespace Metro_WPF_Template_App.Resources.Config
+﻿/// <summary>
+/// AppUrls.cs holds URLs used within the application.
+/// </summary>
+
+namespace Metro_WPF_Template_App.Resources.Config
 {
     public static class AppUrls
     {

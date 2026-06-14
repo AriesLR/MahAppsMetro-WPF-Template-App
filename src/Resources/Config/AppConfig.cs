@@ -2,6 +2,10 @@
 using System.IO;
 using System.Reflection;
 
+/// <summary>
+/// AppConfig.cs holds various strings used within the application, including where the app's config folder gets generated.
+/// </summary>
+
 namespace Metro_WPF_Template_App.Resources.Config
 {
     public class AppConfig
