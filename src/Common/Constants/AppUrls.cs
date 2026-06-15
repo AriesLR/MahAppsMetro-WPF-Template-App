@@ -2,7 +2,7 @@
 /// AppUrls.cs holds URLs used within the application.
 /// </summary>
 
-namespace Metro_WPF_Template_App.Resources.Config
+namespace Metro_WPF_Template_App.Common.Constants
 {
     public static class AppUrls
     {

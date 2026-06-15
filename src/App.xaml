@@ -11,7 +11,7 @@
                 <!-- Default Theme -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
                 <!-- Custom Theme Assets -->
-                <ResourceDictionary Source="pack://application:,,,/Metro-WPF-Template-App;component/Resources/Themes/CustomThemeAssets.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Metro-WPF-Template-App;component/Styles/CustomThemeAssets.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

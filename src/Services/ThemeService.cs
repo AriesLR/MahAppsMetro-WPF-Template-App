@@ -1,12 +1,12 @@
 ﻿using ControlzEx.Theming;
-using Metro_WPF_Template_App.Resources.DataModels;
+using Metro_WPF_Template_App.Models;
 using Application = System.Windows.Application;
 
 /// <summary>
 /// ThemeService.cs provides the core functionality for switching themes.
 /// </summary>
 
-namespace Metro_WPF_Template_App.Resources.Functions.Services
+namespace Metro_WPF_Template_App.Services
 {
     public static class ThemeService
     {

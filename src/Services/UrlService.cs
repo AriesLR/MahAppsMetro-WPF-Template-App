@@ -2,7 +2,7 @@
 /// UrlService.cs is used to open URLs in the user's default browser.
 /// </summary>
 
-namespace Metro_WPF_Template_App.Resources.Functions.Services
+namespace Metro_WPF_Template_App.Services
 {
     public static class UrlService
     {

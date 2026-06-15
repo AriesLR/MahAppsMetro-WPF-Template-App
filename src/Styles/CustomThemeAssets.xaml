@@ -7,7 +7,19 @@
                     mc:Ignorable="options">
 
 
-    <!--  *************COLORS START*************  -->
+    <!--  ************* CONTROL STYLES START *************  -->
+
+    <!-- ======== Flyout Styles ======== -->
+    <Color x:Key="Alr.Colors.Flyout.Background">#FF2F2F2F</Color>
+    <Color x:Key="Alr.Colors.Flyout.Footer.Background">#FF252525</Color>
+    <SolidColorBrush x:Key="Alr.Brushes.Flyout.Background" Color="{StaticResource Alr.Colors.Flyout.Background}" options:Freeze="True" />
+    <SolidColorBrush x:Key="Alr.Brushes.Flyout.Footer.Background" Color="{StaticResource Alr.Colors.Flyout.Footer.Background}" options:Freeze="True" />
+
+    <!--  ************* CONTROL STYLES END *************  -->
+
+
+    
+    <!--  ************* COLORS START *************  -->
 
     <!-- ======== Red ======== -->
 
@@ -2820,5 +2832,7 @@
     <!-- White 20% Opacity -->
     <Color x:Key="Alr.Colors.White.O20">#33FFFFFF</Color>
     <SolidColorBrush x:Key="Alr.Brushes.White.O20" Color="{StaticResource Alr.Colors.White.O20}" options:Freeze="True" />
+
+    <!--  ************* COLORS END *************  -->
 
 </ResourceDictionary>

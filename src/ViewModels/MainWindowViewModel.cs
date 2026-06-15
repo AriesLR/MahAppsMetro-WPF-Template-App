@@ -17,7 +17,6 @@ namespace Metro_WPF_Template_App.ViewModels
         public MainWindowViewModel()
         {
             // Top Menu Items
-
             MenuItems =
             [
                 new MenuItem

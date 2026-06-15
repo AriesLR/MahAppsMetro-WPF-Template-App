@@ -1,10 +1,8 @@
-﻿using ControlzEx.Theming;
-using MahApps.Metro.Controls;
-using Metro_WPF_Template_App.Resources.Config;
-using Metro_WPF_Template_App.Resources.Functions.Services;
+﻿using MahApps.Metro.Controls;
+using Metro_WPF_Template_App.Common.Constants;
+using Metro_WPF_Template_App.Services;
 using Metro_WPF_Template_App.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Metro_WPF_Template_App
 {
@@ -17,18 +15,13 @@ namespace Metro_WPF_Template_App
             InitializeComponent();
             DataContext = new MainWindowViewModel();
 
-            //BaseThemeDropdown.ItemsSource = ThemeService.AvailableBaseThemes;
-            AccentColorDropdown.ItemsSource = ThemeService.AvailableAccents;
-
             this.Loaded += (s, e) =>
             {
                 this.Dispatcher.BeginInvoke(new Action(async () =>
                 {
-                    AppSettingsService.InitializeAppSettings(this, ref _isLoaded);
+                    AppSettingsService.InitializeAppSettings(ref _isLoaded);
                 }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
             };
-
-            SyncUIThemeSelections();
         }
 
         // ============ Button Clicks ============
@@ -37,69 +30,6 @@ namespace Metro_WPF_Template_App
         private void OpenGithubRepo_Click(object sender, RoutedEventArgs e)
         {
             UrlService.OpenUrlAsync(AppUrls.GithubRepoUrl);
-        }
-
-        // Open Buy Me A Coffee Button
-        private void OpenBuyMeACoffee_Click(object sender, RoutedEventArgs e)
-        {
-            UrlService.OpenUrlAsync(AppUrls.BuyMeACoffeeUrl);
-        }
-
-        // Open Patreon Button
-        private void OpenPatreon_Click(object sender, RoutedEventArgs e)
-        {
-            UrlService.OpenUrlAsync(AppUrls.PatreonUrl);
-        }
-
-        // Check For App Updates Button
-        private async void CheckForUpdates_Click(object sender, RoutedEventArgs e)
-        {
-            await UpdateService.CheckForUpdatesAsync(AppUrls.UpdateUrl);
-        }
-
-        // App Settings Button Click
-        private void AppSettingsFlyout_Click(object? sender, RoutedEventArgs e)
-        {
-            ((MainWindowViewModel)DataContext).OpenAppSettingsFlyout();
-        }
-
-        // ============ App Settings Event Handlers ============
-
-        // Check App Updates Toggled
-        private void CheckAppUpdatesToggle_Toggled(object sender, RoutedEventArgs e)
-        {
-            if (!_isLoaded || AppSettingsService.CurrentSettings == null) return;
-
-            AppSettingsService.CurrentSettings.CheckForUpdatesOnStartup = CheckAppUpdatesToggle.IsOn;
-
-            AppSettingsService.SaveAppSettings(AppSettingsService.CurrentSettings);
-        }
-
-        // ============ Theme Helpers ============
-        private void SyncUIThemeSelections()
-        {
-            var settings = AppSettingsService.CurrentSettings;
-
-            //BaseThemeDropdown.SelectedItem = settings.BaseTheme;
-
-            AccentColorDropdown.SelectedItem = ThemeService.AvailableAccents
-                .FirstOrDefault(t => string.Equals(t.ColorScheme, settings.AccentColor, StringComparison.OrdinalIgnoreCase));
-        }
-
-        /*private void BaseThemeDropdown_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (!_isLoaded || BaseThemeDropdown.SelectedItem is not string selectedBase)
-                return;
-
-            ThemeService.SetBaseTheme(selectedBase);
-        }*/
-
-        private void AccentColorDropdown_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (!_isLoaded || AccentColorDropdown.SelectedItem is not Theme selectedAccent)
-                return;
-
-            ThemeService.SetAccentColor(selectedAccent.ColorScheme);
         }
 
         // End of Class

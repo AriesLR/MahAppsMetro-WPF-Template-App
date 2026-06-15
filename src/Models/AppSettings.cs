@@ -1,4 +1,4 @@
-﻿namespace Metro_WPF_Template_App.Resources.DataModels
+﻿namespace Metro_WPF_Template_App.Models
 {
     /// <summary>
     /// AppSettings.cs holds the data model for the application's settings file.

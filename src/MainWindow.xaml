@@ -2,13 +2,14 @@
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 xmlns:config="clr-namespace:Metro_WPF_Template_App.Resources.Config"
+                 xmlns:constants="clr-namespace:Metro_WPF_Template_App.Common.Constants"
                  xmlns:viewmodels="clr-namespace:Metro_WPF_Template_App.ViewModels"
+                 xmlns:flyouts="clr-namespace:Metro_WPF_Template_App.Views.Flyouts"
                  d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
-                 Title="{Binding Source={x:Static config:AppConfig.TitleAppVersion}, StringFormat='Metro-WPF-Template-App \{0\}'}"
+                 Title="{Binding Source={x:Static constants:AppConfig.TitleAppVersion}, StringFormat='Metro-WPF-Template-App \{0\}'}"
                  Width="1200"
                  Height="750"
                  MinWidth="1200"
@@ -26,7 +27,7 @@
         <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle.NonActive" Color="{DynamicResource MahApps.Colors.Accent}" />
         <SolidColorBrush x:Key="MahApps.Brushes.Border.NonActive" Color="{DynamicResource MahApps.Colors.Accent}" />
     </mah:MetroWindow.Resources>
-    
+
     <!-- ================ Title Bar ================ -->
 
     <!-- Left Title Bar Button(s) -->
@@ -53,7 +54,6 @@
                     </iconPacks:PackIconMaterial.ToolTip>
                 </iconPacks:PackIconMaterial>
             </Button>
-
         </mah:WindowCommands>
     </mah:MetroWindow.RightWindowCommands>
     -->
@@ -63,6 +63,7 @@
             <!-- ================ Sidebar Navigation ================ -->
             <mah:SplitView.Pane>
                 <Border BorderBrush="{DynamicResource MahApps.Brushes.Accent3}" BorderThickness="0 0 1 0">
+                    <!-- To enable the top sidebar items (MenuItems) replace ItemsSource="{x:Null}" with ItemsSource="{Binding MenuItems}" -->
                     <mah:HamburgerMenu Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch"
                                        IsPaneOpen="{Binding IsPaneOpen, ElementName=SplitView, Mode=TwoWay}" CompactPaneLength="50" OpenPaneLength="250"
                                        PaneBackground="{DynamicResource MahApps.Brushes.Accent}" Foreground="{DynamicResource MahApps.Brushes.Gray1}"
@@ -71,7 +72,7 @@
 
                                        ItemTemplate="{DynamicResource MenuTemplate}"
                                        ItemContainerStyle="{DynamicResource ItemStyle}"
-                                       ItemsSource="{Binding MenuItems}"
+                                       ItemsSource="{x:Null}"
 
                                        OptionsItemTemplate="{DynamicResource MenuTemplate}"
                                        OptionsItemContainerStyle="{DynamicResource ItemStyle}"
@@ -150,420 +151,7 @@
 
     <!-- ================  Flyouts ================ -->
     <mah:MetroWindow.Flyouts>
-        <mah:FlyoutsControl>
-            <!-- App Settings Flyout -->
-            <mah:Flyout x:Name="AppSettingsFlyout"
-                        Header="App Settings"
-                        Position="Left"
-                        Width="450"
-                        Foreground="{DynamicResource MahApps.Brushes.Flyout.Foreground}"
-                        Background="{DynamicResource MahApps.Brushes.Flyout.Background}"
-                        BorderBrush="{DynamicResource MahApps.Brushes.Accent}"
-                        BorderThickness="0 0 1 0"
-                        IsOpen="{Binding IsAppSettingsFlyoutOpen}">
-
-                <mah:Flyout.Resources>
-                    <SolidColorBrush x:Key="MahApps.Brushes.Gray3" Color="{DynamicResource MahApps.Colors.Accent3}" />
-                    <SolidColorBrush x:Key="MahApps.Brushes.Thumb" Color="{DynamicResource MahApps.Colors.Accent2}" />
-
-                    <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MahApps.Styles.ScrollViewer}">
-                        <Style.Resources>
-                            <SolidColorBrush x:Key="MahApps.Brushes.Gray3" Color="{DynamicResource MahApps.Colors.Accent3}" />
-                            <SolidColorBrush x:Key="MahApps.Brushes.Thumb" Color="{DynamicResource MahApps.Colors.Accent2}" />
-                        </Style.Resources>
-                    </Style>
-                </mah:Flyout.Resources>
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
-                        <Grid Margin="20,10,20,20">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <Separator Grid.Row="0" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
-
-                            <!-- General Section -->
-                            <TextBlock Grid.Row="1" Text="General" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
-
-                            <!-- Check for Updates on Startup -->
-                            <Grid Grid.Row="2" Margin="0,0,0,20">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
-                                    <TextBlock Text="Check for updates on startup" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
-                                    <TextBlock Text="Keep the application up to date by checking for updates on startup."
-                                               Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,150,0" />
-                                </StackPanel>
-                                <mah:ToggleSwitch Grid.Column="1" x:Name="CheckAppUpdatesToggle"
-                                                  Header="" OnContent="" OffContent=""
-                                                  Margin="0,0,-100,0"
-                                                  HorizontalAlignment="Right"
-                                                  Toggled="CheckAppUpdatesToggle_Toggled"
-                                                  Style="{StaticResource MahApps.Styles.ToggleSwitch}"
-                                                  VerticalAlignment="Center" />
-                            </Grid>
-
-                            <!-- Check for Updates Button -->
-                            <Grid Grid.Row="3" Margin="0,0,0,20">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
-                                    <TextBlock Text="Check for updates" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
-                                    <TextBlock Text="Manually check for the latest version immediately."
-                                               Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,200,0" />
-                                </StackPanel>
-
-                                <Button x:Name="CheckAppUpdatesButton"
-                                        Width="180"
-                                        Height="35"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        Margin="0 0 0 0"
-                                        BorderBrush="{DynamicResource MahApps.Brushes.Gray7}"
-                                        Background="Transparent"
-                                        Click="CheckForUpdates_Click">
-
-                                    <Button.Resources>
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Button.Border" Color="{StaticResource MahApps.Colors.Gray7}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.Focus" Color="{StaticResource MahApps.Colors.Gray7}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.MouseOver" Color="{StaticResource MahApps.Colors.Gray5}" />
-                                    </Button.Resources>
-
-                                    <Grid HorizontalAlignment="Stretch" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Button}}">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <iconPacks:PackIconMaterial Kind="Update"
-                                                                        Foreground="{DynamicResource MahApps.Brushes.Gray5}"
-                                                                        Width="18"
-                                                                        Height="18"
-                                                                        VerticalAlignment="Center"
-                                                                        Margin="10,0,0,0"
-                                                                        Grid.Column="0" />
-
-                                        <TextBlock Text="Check for Updates"
-                                                       Foreground="{DynamicResource MahApps.Brushes.Gray6}"
-                                                       FontWeight="SemiBold"
-                                                       FontSize="12"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Grid.Column="1"
-                                                       Margin="0,0,18,0" />
-                                    </Grid>
-                                </Button>
-                            </Grid>
-
-                            <Separator Grid.Row="4" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
-
-                            <!-- Appearance Section -->
-                            <TextBlock Grid.Row="5" Text="Appearance" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
-
-                            <!--<Grid Grid.Row="6" Margin="0,0,0,20">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
-                                    <TextBlock Text="App Theme" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
-                                    <TextBlock Text="Select your preference between a light or dark presentation scheme." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,50,0" />
-                                </StackPanel>
-
-                                <ComboBox x:Name="BaseThemeDropdown"
-                                          Grid.Column="1"
-                                          Width="150"
-                                          Height="35"
-                                          mah:ControlsHelper.CornerRadius="2"
-                                          Background="{DynamicResource MahApps.Brushes.Transparent}"
-                                          BorderBrush="{DynamicResource MahApps.Brushes.Gray7}"
-                                          Foreground="{DynamicResource MahApps.Brushes.Gray6}"
-                                          VerticalAlignment="Center"
-                                          BorderThickness="1"
-                                          VerticalContentAlignment="Center"
-                                          SelectionChanged="BaseThemeDropdown_SelectionChanged"
-                                          mah:TextBoxHelper.Watermark="Select Theme...">
-
-                                    <ComboBox.Resources>
-                                        <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.Border.MouseOver" Color="{DynamicResource MahApps.Colors.Gray5}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.Border.Focus" Color="{DynamicResource MahApps.Colors.Gray7}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.PopupBorder" Color="{DynamicResource MahApps.Colors.Gray7}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Gray1" Color="{StaticResource MahApps.Colors.Gray}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Gray5" Color="{StaticResource MahApps.Colors.Gray.SemiTransparent}" />
-                                    </ComboBox.Resources>
-
-                                    <ComboBox.Style>
-                                        <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-                                            <Setter Property="Background" Value="Transparent" />
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray.SemiTransparent}" />
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </ComboBox.Style>
-
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding}" FontSize="12" VerticalAlignment="Center" Margin="5,0,0,0" />
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                            </Grid>-->
-
-                            <Grid Grid.Row="6" Margin="0,0,0,20">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
-                                    <TextBlock Text="Accent Color" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
-                                    <TextBlock Text="Choose the highlight accent tone utilized across components and highlights." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,50,0" />
-                                </StackPanel>
-
-                                <ComboBox x:Name="AccentColorDropdown"
-                                          Grid.Column="1"
-                                          Width="150"
-                                          Height="35"
-                                          mah:ControlsHelper.CornerRadius="2"
-                                          Background="{DynamicResource MahApps.Brushes.Transparent}"
-                                          BorderBrush="{DynamicResource MahApps.Brushes.Gray7}"
-                                          Foreground="{DynamicResource MahApps.Brushes.Gray6}"
-                                          VerticalAlignment="Center"
-                                          BorderThickness="1"
-                                          VerticalContentAlignment="Center"
-                                          SelectionChanged="AccentColorDropdown_SelectionChanged"
-                                          mah:TextBoxHelper.Watermark="Select Color...">
-
-                                    <ComboBox.Resources>
-                                        <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.Border.MouseOver" Color="{DynamicResource MahApps.Colors.Gray5}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.Border.Focus" Color="{DynamicResource MahApps.Colors.Gray7}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.ComboBox.PopupBorder" Color="{DynamicResource MahApps.Colors.Gray7}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Gray1" Color="{StaticResource MahApps.Colors.Gray}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Gray5" Color="{StaticResource MahApps.Colors.Gray.SemiTransparent}" />
-                                    </ComboBox.Resources>
-
-                                    <ComboBox.Style>
-                                        <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-                                            <Setter Property="Background" Value="Transparent" />
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray.SemiTransparent}" />
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </ComboBox.Style>
-
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Margin="2,0,0,0">
-                                                <Ellipse Width="12"
-                                                         Height="12"
-                                                         Fill="{Binding ShowcaseBrush}"
-                                                         Stroke="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                                                         StrokeThickness="0.5"
-                                                         VerticalAlignment="Center" />
-                                                <TextBlock Text="{Binding ColorScheme}" FontSize="12" Margin="8,0,0,0" VerticalAlignment="Center" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                            </Grid>
-                        </Grid>
-                    </ScrollViewer>
-
-                    <!-- App Settings Flyout Footer -->
-                    <Border Grid.Row="1" Background="{StaticResource MahApps.Brushes.Gray8}" BorderBrush="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" BorderThickness="0 1 0 0" Padding="15">
-                        <!-- Tips Paragraph -->
-                        <TextBlock Grid.Row="1"
-                                   Foreground="{DynamicResource MahApps.Brushes.Gray2}"
-                                   FontSize="12"
-                                   TextAlignment="Center"
-                                   Margin="0,0,0,0"
-                                   Text="Your changes are saved automatically." />
-                    </Border>
-                </Grid>
-            </mah:Flyout>
-
-            <!-- Tips Flyout -->
-            <mah:Flyout x:Name="TipsFlyout"
-                        Header="Leave a Tip"
-                        Position="Left"
-                        Width="450"
-                        Foreground="{DynamicResource MahApps.Brushes.Flyout.Foreground}"
-                        Background="{DynamicResource MahApps.Brushes.Flyout.Background}"
-                        BorderBrush="{DynamicResource MahApps.Brushes.Accent}"
-                        BorderThickness="0 0 1 0"
-                        IsOpen="{Binding IsTipsFlyoutOpen}">
-
-                <mah:Flyout.Resources>
-                    <SolidColorBrush x:Key="MahApps.Brushes.Gray3" Color="{DynamicResource MahApps.Colors.Accent3}" />
-                    <SolidColorBrush x:Key="MahApps.Brushes.Thumb" Color="{DynamicResource MahApps.Colors.Accent2}" />
-
-                    <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource MahApps.Styles.ScrollViewer}">
-                        <Style.Resources>
-                            <SolidColorBrush x:Key="MahApps.Brushes.Gray3" Color="{DynamicResource MahApps.Colors.Accent3}" />
-                            <SolidColorBrush x:Key="MahApps.Brushes.Thumb" Color="{DynamicResource MahApps.Colors.Accent2}" />
-                        </Style.Resources>
-                    </Style>
-                </mah:Flyout.Resources>
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
-                        <Grid Margin="20,10,20,20">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <Separator Grid.Row="0" Background="{StaticResource MahApps.Brushes.Accent3}" Margin="0,10,0,20" />
-
-                            <!-- Tips Paragraph -->
-                            <TextBlock Grid.Row="1"
-                                       Foreground="{DynamicResource MahApps.Brushes.Accent4}"
-                                       FontSize="12"
-                                       TextAlignment="Center"
-                                       TextWrapping="Wrap"
-                                       Margin="0,0,0,15"
-                                       Padding="25,10,25,10"
-                                       Text="VSSuite is a completely free hobby project built in my spare time. Since there are no server costs to maintain, any tips left here go straight toward supporting me personally. Honestly, seeing a tip come in is a massive confidence booster and a great reminder that the hours spent staring at code are making a difference. Thank you for supporting the project!" />
-
-                            <Separator Grid.Row="4" Background="{StaticResource MahApps.Brushes.Accent3}" Margin="0,10,0,25" />
-
-                            <TextBlock Grid.Row="5" Text="Fuel the Project" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource DarkOlive.Brush.WA700}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,25" />
-
-                            <!-- Buy Me A Coffee Button -->
-                            <Grid Grid.Row="6" Margin="0,0,0,20">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <Button x:Name="BuyMeACoffeeButton"
-                                        Width="175"
-                                        Height="35"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Margin="0 0 0 0"
-                                        Click="OpenBuyMeACoffee_Click">
-
-                                    <Button.Resources>
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Gray10" Color="{StaticResource MahApps.Colors.Accent}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Gray8" Color="{StaticResource MahApps.Colors.Accent4}" />
-                                    </Button.Resources>
-
-                                    <Grid HorizontalAlignment="Stretch" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Button}}">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <iconPacks:PackIconSimpleIcons Kind="BuyMeACoffee"
-                                                                        Foreground="{DynamicResource MahApps.Brushes.Accent3}"
-                                                                        Width="18"
-                                                                        Height="18"
-                                                                        VerticalAlignment="Center"
-                                                                        Margin="10,0,0,0"
-                                                                        Grid.Column="0" />
-
-                                        <TextBlock Text="Buy Me A Coffee"
-                                                       Foreground="{DynamicResource MahApps.Brushes.Accent3}"
-                                                       FontWeight="SemiBold"
-                                                       FontSize="12"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Grid.Column="1"
-                                                       Margin="0,0,18,0" />
-                                    </Grid>
-                                </Button>
-                            </Grid>
-
-                            <!-- Patreon Button -->
-                            <Grid Grid.Row="7" Margin="0,0,0,20">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <Button x:Name="PatreonButton"
-                                        Width="175"
-                                        Height="35"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Margin="0 0 0 0"
-                                        Click="OpenPatreon_Click">
-
-                                    <Button.Resources>
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Gray10" Color="{StaticResource MahApps.Colors.Accent3}" />
-                                        <SolidColorBrush x:Key="MahApps.Brushes.Gray8" Color="{StaticResource MahApps.Colors.Accent4}" />
-                                    </Button.Resources>
-
-                                    <Grid HorizontalAlignment="Stretch" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Button}}">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <iconPacks:PackIconSimpleIcons Kind="Patreon"
-                                                                        Foreground="{DynamicResource MahApps.Brushes.Accent3}"
-                                                                        Width="18"
-                                                                        Height="18"
-                                                                        VerticalAlignment="Center"
-                                                                        Margin="10,0,0,0"
-                                                                        Grid.Column="0" />
-
-                                        <TextBlock Text="Patreon"
-                                                       Foreground="{DynamicResource MahApps.Brushes.Accent3}"
-                                                       FontWeight="SemiBold"
-                                                       FontSize="12"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Grid.Column="1"
-                                                       Margin="0,0,18,0" />
-                                    </Grid>
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </ScrollViewer>
-                </Grid>
-            </mah:Flyout>
-        </mah:FlyoutsControl>
+        <flyouts:MainWindowFlyoutsView />
     </mah:MetroWindow.Flyouts>
     <!-- ================  Flyouts END ================ -->
 </mah:MetroWindow>

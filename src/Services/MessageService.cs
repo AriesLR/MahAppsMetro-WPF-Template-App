@@ -6,7 +6,7 @@ using Application = System.Windows.Application;
 /// MessageService.cs holds the methods used to trigger/construct dialogs within the application.
 /// </summary>
 
-namespace Metro_WPF_Template_App.Resources.Functions.Services
+namespace Metro_WPF_Template_App.Services
 {
     public static class MessageService
     {

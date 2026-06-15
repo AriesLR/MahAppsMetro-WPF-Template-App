@@ -1,4 +1,4 @@
-﻿using Metro_WPF_Template_App.Resources.Config;
+﻿using Metro_WPF_Template_App.Common.Constants;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net.Http;
@@ -7,7 +7,7 @@ using System.Net.Http;
 /// UpdateService.cs holds the methods used for checking if the application has an update. This will use the URL set for "UpdateUrl" in the AppUrls.cs file.
 /// </summary>
 
-namespace Metro_WPF_Template_App.Resources.Functions.Services
+namespace Metro_WPF_Template_App.Services
 {
     public class UpdateService
     {

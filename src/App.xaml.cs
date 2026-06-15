@@ -1,5 +1,5 @@
-﻿using Metro_WPF_Template_App.Resources.DataModels;
-using Metro_WPF_Template_App.Resources.Functions.Services;
+﻿using Metro_WPF_Template_App.Models;
+using Metro_WPF_Template_App.Services;
 using System.Windows;
 using Application = System.Windows.Application;
 
