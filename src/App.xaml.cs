@@ -17,7 +17,15 @@ namespace Metro_WPF_Template_App
             var settings = AppSettingsService.LoadAppSettings() ?? new AppSettings();
             AppSettingsService.CurrentSettings = settings;
 
+            LoggingService.Initialize(settings.EnableDebugLogging);
+
             ThemeService.Initialize(settings);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            LoggingService.Shutdown();
+            base.OnExit(e);
         }
     }
 }

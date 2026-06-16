@@ -7,11 +7,15 @@
     public class AppSettings
     {
         // ================ General Settings ================
-
         public bool CheckForUpdatesOnStartup { get; set; } = true;
 
-        // ================ Appearance Settings ================
+        // ================ Application Behavior Settings ================
+        public bool StartWithWindows { get; set; } = false;
 
+        // ================ Debug Logging Settings ================
+        public bool EnableDebugLogging { get; set; } = false;
+
+        // ================ Appearance Settings ================
         // Base Theme (Light/Dark)
         public string BaseTheme { get; set; } = "Dark";
 

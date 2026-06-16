@@ -57,13 +57,31 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
+                    <!-- Application Behavior Section -->
                     <Separator Grid.Row="0" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
+                    <TextBlock Grid.Row="1" Text="Application Behavior" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
 
-                    <!-- General Section -->
-                    <TextBlock Grid.Row="1" Text="General" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
+                    <!-- Start With Windows Toggle -->
+                    <Grid Grid.Row="2" Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
+                            <TextBlock Text="Start with Windows" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
+                            <TextBlock Text="Automatically launch the application when Windows starts." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,150,0" />
+                        </StackPanel>
+                        <mah:ToggleSwitch Grid.Column="1" x:Name="StartWithWindowsToggle"
+                                          Header="" OnContent="" OffContent=""
+                                          Margin="0,0,-100,0"
+                                          HorizontalAlignment="Right"
+                                          Toggled="StartWithWindowsToggle_Toggled"
+                                          Style="{StaticResource MahApps.Styles.ToggleSwitch}"
+                                          VerticalAlignment="Center" />
+                    </Grid>
 
                     <!-- Check for Updates on Startup -->
-                    <Grid Grid.Row="2" Margin="0,0,0,20">
+                    <Grid Grid.Row="3" Margin="0,0,0,20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -82,7 +100,7 @@
                     </Grid>
 
                     <!-- Check for Updates Button -->
-                    <Grid Grid.Row="3" Margin="0,0,0,20">
+                    <Grid Grid.Row="4" Margin="0,0,0,20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -135,10 +153,9 @@
                         </Button>
                     </Grid>
 
-                    <Separator Grid.Row="4" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
-
                     <!-- Appearance Section -->
-                    <TextBlock Grid.Row="5" Text="Appearance" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
+                    <Separator Grid.Row="5" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
+                    <TextBlock Grid.Row="6" Text="Appearance" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
 
                     <!--<Grid Grid.Row="6" Margin="0,0,0,20">
                                 <Grid.ColumnDefinitions>
@@ -191,7 +208,7 @@
                                 </ComboBox>
                             </Grid>-->
 
-                    <Grid Grid.Row="6" Margin="0,0,0,20">
+                    <Grid Grid.Row="7" Margin="0,0,0,20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -248,6 +265,29 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
+                    </Grid>
+
+                    <!-- Logging Section -->
+                    <Separator Grid.Row="8" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
+                    <TextBlock Grid.Row="9" Text="Logging" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
+
+                    <!-- Enable Debug Logging Toggle -->
+                    <Grid Grid.Row="10" Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
+                            <TextBlock Text="Enable debug logging" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
+                            <TextBlock Text="Generate a log file to help track down application issues." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,150,0" />
+                        </StackPanel>
+                        <mah:ToggleSwitch Grid.Column="1" x:Name="EnableDebugLoggingToggle"
+                                          Header="" OnContent="" OffContent=""
+                                          Margin="0,0,-100,0"
+                                          HorizontalAlignment="Right"
+                                          Toggled="EnableDebugLoggingToggle_Toggled"
+                                          Style="{StaticResource MahApps.Styles.ToggleSwitch}"
+                                          VerticalAlignment="Center" />
                     </Grid>
                 </Grid>
             </ScrollViewer>
