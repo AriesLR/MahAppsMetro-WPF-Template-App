@@ -6,23 +6,26 @@
 
     public class AppSettings
     {
-        // ================ General Settings ================
-        public bool CheckForUpdatesOnStartup { get; set; } = true;
+        // ================ Appearance ================
 
-        // ================ Application Behavior Settings ================
-        public bool StartWithWindows { get; set; } = false;
-
-        // ================ Debug Logging Settings ================
-        public bool EnableDebugLogging { get; set; } = false;
-
-        // ================ Appearance Settings ================
         // Base Theme (Light/Dark)
         public string BaseTheme { get; set; } = "Dark";
 
         // Accent Color (Amber/Blue/Brown/Cobalt/etc)
-        public string AccentColor { get; set; } = "Blue";
+        public string AccentColor { get; set; } = "Lime";
 
         // Combined Theme Name
         public string CombinedThemeName => $"{BaseTheme}.{AccentColor}";
+
+        // ================ Application Behavior ================
+        public bool StartWithWindows { get; set; } = false;
+
+        public bool AlwaysOnTop { get; set; } = false;
+
+        // ================ Updates ================
+        public bool CheckForUpdatesOnStartup { get; set; } = true;
+
+        // ================ Logging ================
+        public bool EnableDebugLogging { get; set; } = false;
     }
 }

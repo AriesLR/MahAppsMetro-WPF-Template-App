@@ -42,128 +42,57 @@
             <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
                 <Grid Margin="20,10,20,20">
                     <Grid.RowDefinitions>
+                        <!-- 0 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 1 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 2 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 3 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 4 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 5 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 6 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 7 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 8 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 9 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 10 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 11 -->
                         <RowDefinition Height="Auto" />
+                        <!-- 12 -->
+                        <RowDefinition Height="Auto" />
+                        <!-- 13 -->
+                        <RowDefinition Height="Auto" />
+                        <!-- 14 -->
+                        <RowDefinition Height="Auto" />
+                        <!-- 15 -->
+                        <RowDefinition Height="Auto" />
+                        <!-- 16 -->
+                        <RowDefinition Height="Auto" />
+                        <!-- 17 -->
+                        <RowDefinition Height="Auto" />
+                        <!-- 18 -->
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <!-- Application Behavior Section -->
-                    <Separator Grid.Row="0" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
-                    <TextBlock Grid.Row="1" Text="Application Behavior" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
-
-                    <!-- Start With Windows Toggle -->
-                    <Grid Grid.Row="2" Margin="0,0,0,20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
-                            <TextBlock Text="Start with Windows" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
-                            <TextBlock Text="Automatically launch the application when Windows starts." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,150,0" />
-                        </StackPanel>
-                        <mah:ToggleSwitch Grid.Column="1" x:Name="StartWithWindowsToggle"
-                                          Header="" OnContent="" OffContent=""
-                                          Margin="0,0,-100,0"
-                                          HorizontalAlignment="Right"
-                                          Toggled="StartWithWindowsToggle_Toggled"
-                                          Style="{StaticResource MahApps.Styles.ToggleSwitch}"
-                                          VerticalAlignment="Center" />
-                    </Grid>
-
-                    <!-- Check for Updates on Startup -->
-                    <Grid Grid.Row="3" Margin="0,0,0,20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
-                            <TextBlock Text="Check for updates on startup" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
-                            <TextBlock Text="Keep the application up to date by checking for updates on startup." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,150,0" />
-                        </StackPanel>
-                        <mah:ToggleSwitch Grid.Column="1" x:Name="CheckAppUpdatesToggle"
-                                          Header="" OnContent="" OffContent=""
-                                          Margin="0,0,-100,0"
-                                          HorizontalAlignment="Right"
-                                          Toggled="CheckAppUpdatesToggle_Toggled"
-                                          Style="{StaticResource MahApps.Styles.ToggleSwitch}"
-                                          VerticalAlignment="Center" />
-                    </Grid>
-
-                    <!-- Check for Updates Button -->
-                    <Grid Grid.Row="4" Margin="0,0,0,20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
-                            <TextBlock Text="Check for updates" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
-                            <TextBlock Text="Manually check for the latest version immediately." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,200,0" />
-                        </StackPanel>
-
-                        <Button x:Name="CheckAppUpdatesButton"
-                                Width="180"
-                                Height="35"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Margin="0 0 0 0"
-                                BorderBrush="{DynamicResource MahApps.Brushes.Gray7}"
-                                Background="Transparent"
-                                Click="CheckForUpdates_Click">
-
-                            <Button.Resources>
-                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border" Color="{StaticResource MahApps.Colors.Gray7}" />
-                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.Focus" Color="{StaticResource MahApps.Colors.Gray7}" />
-                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.MouseOver" Color="{StaticResource MahApps.Colors.Gray5}" />
-                            </Button.Resources>
-
-                            <Grid HorizontalAlignment="Stretch" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Button}}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <iconPacks:PackIconMaterial Kind="Update"
-                                                            Foreground="{DynamicResource MahApps.Brushes.Gray5}"
-                                                            Width="18"
-                                                            Height="18"
-                                                            VerticalAlignment="Center"
-                                                            Margin="10,0,0,0"
-                                                            Grid.Column="0" />
-
-                                <TextBlock Text="Check for Updates"
-                                           Foreground="{DynamicResource MahApps.Brushes.Gray6}"
-                                           FontWeight="SemiBold"
-                                           FontSize="12"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Grid.Column="1"
-                                           Margin="0,0,18,0" />
-                            </Grid>
-                        </Button>
-                    </Grid>
-
                     <!-- Appearance Section -->
-                    <Separator Grid.Row="5" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
-                    <TextBlock Grid.Row="6" Text="Appearance" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
+                    <Separator Grid.Row="0" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
+                    <TextBlock Grid.Row="1" Text="Appearance" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
 
-                    <!--<Grid Grid.Row="6" Margin="0,0,0,20">
+                    <!--<Grid Grid.Row="0" Margin="0,0,0,20">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
-                                    <TextBlock Text="App Theme" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
+                                    <TextBlock Text="App theme" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
                                     <TextBlock Text="Select your preference between a light or dark presentation scheme." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,50,0" />
                                 </StackPanel>
 
@@ -208,13 +137,13 @@
                                 </ComboBox>
                             </Grid>-->
 
-                    <Grid Grid.Row="7" Margin="0,0,0,20">
+                    <Grid Grid.Row="2" Margin="0,0,0,20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
-                            <TextBlock Text="Accent Color" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
+                            <TextBlock Text="Accent color" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
                             <TextBlock Text="Choose the accent color utilized across the application." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,50,0" />
                         </StackPanel>
 
@@ -267,12 +196,131 @@
                         </ComboBox>
                     </Grid>
 
+                    <!-- Application Behavior Section -->
+                    <Separator Grid.Row="3" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
+                    <TextBlock Grid.Row="4" Text="Application Behavior" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
+
+                    <!-- Start With Windows Toggle -->
+                    <Grid Grid.Row="5" Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
+                            <TextBlock Text="Start with Windows" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
+                            <TextBlock Text="Automatically launch the application when Windows starts." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,150,0" />
+                        </StackPanel>
+                        <mah:ToggleSwitch Grid.Column="1" x:Name="StartWithWindowsToggle"
+                                          OnContent="" OffContent=""
+                                          Margin="0,0,-100,0"
+                                          HorizontalAlignment="Right"
+                                          Toggled="StartWithWindowsToggle_Toggled"
+                                          Style="{StaticResource MahApps.Styles.ToggleSwitch}"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+
+                    <!-- Always On Top Toggle -->
+                    <Grid Grid.Row="6" Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
+                            <TextBlock Text="Always on top" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
+                            <TextBlock Text="Keep the application window pinned above all other open windows." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,150,0" />
+                        </StackPanel>
+                        <mah:ToggleSwitch Grid.Column="1" x:Name="AlwaysOnTopToggle"
+                                          OnContent="" OffContent=""
+                                          Margin="0,0,-100,0"
+                                          HorizontalAlignment="Right"
+                                          Toggled="AlwaysOnTopToggle_Toggled"
+                                          Style="{StaticResource MahApps.Styles.ToggleSwitch}"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+
+                    <!-- Updates Section -->
+                    <Separator Grid.Row="7" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
+                    <TextBlock Grid.Row="8" Text="Updates" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
+
+                    <!-- Check for Updates on Startup -->
+                    <Grid Grid.Row="9" Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
+                            <TextBlock Text="Check for updates on startup" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
+                            <TextBlock Text="Keep the application up to date by checking for updates on startup." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,150,0" />
+                        </StackPanel>
+                        <mah:ToggleSwitch Grid.Column="1" x:Name="CheckAppUpdatesToggle"
+                                          OnContent="" OffContent=""
+                                          Margin="0,0,-100,0"
+                                          HorizontalAlignment="Right"
+                                          Toggled="CheckAppUpdatesToggle_Toggled"
+                                          Style="{StaticResource MahApps.Styles.ToggleSwitch}"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+
+                    <!-- Check for Updates Button -->
+                    <Grid Grid.Row="10" Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
+                            <TextBlock Text="Check for updates" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
+                            <TextBlock Text="Manually check for the latest version immediately." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,200,0" />
+                        </StackPanel>
+
+                        <Button x:Name="CheckAppUpdatesButton"
+                                Width="180"
+                                Height="35"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="0 0 0 0"
+                                BorderBrush="{DynamicResource MahApps.Brushes.Gray7}"
+                                Background="Transparent"
+                                Click="CheckForUpdates_Click">
+
+                            <Button.Resources>
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border" Color="{StaticResource MahApps.Colors.Gray7}" />
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.Focus" Color="{StaticResource MahApps.Colors.Gray7}" />
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.MouseOver" Color="{StaticResource MahApps.Colors.Gray5}" />
+                            </Button.Resources>
+
+                            <Grid HorizontalAlignment="Stretch" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Button}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <iconPacks:PackIconMaterial Kind="Update"
+                                                            Foreground="{DynamicResource MahApps.Brushes.Gray5}"
+                                                            Width="18"
+                                                            Height="18"
+                                                            VerticalAlignment="Center"
+                                                            Margin="10,0,0,0"
+                                                            Grid.Column="0" />
+
+                                <TextBlock Text="Check for Updates"
+                                           Foreground="{DynamicResource MahApps.Brushes.Gray6}"
+                                           FontWeight="SemiBold"
+                                           FontSize="12"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Grid.Column="1"
+                                           Margin="0,0,18,0" />
+                            </Grid>
+                        </Button>
+                    </Grid>
+
                     <!-- Logging Section -->
-                    <Separator Grid.Row="8" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
-                    <TextBlock Grid.Row="9" Text="Logging" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
+                    <Separator Grid.Row="11" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
+                    <TextBlock Grid.Row="12" Text="Logging" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
 
                     <!-- Enable Debug Logging Toggle -->
-                    <Grid Grid.Row="10" Margin="0,0,0,20">
+                    <Grid Grid.Row="13" Margin="0,0,0,20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -282,13 +330,163 @@
                             <TextBlock Text="Generate a log file to help track down application issues." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,150,0" />
                         </StackPanel>
                         <mah:ToggleSwitch Grid.Column="1" x:Name="EnableDebugLoggingToggle"
-                                          Header="" OnContent="" OffContent=""
+                                          OnContent="" OffContent=""
                                           Margin="0,0,-100,0"
                                           HorizontalAlignment="Right"
                                           Toggled="EnableDebugLoggingToggle_Toggled"
                                           Style="{StaticResource MahApps.Styles.ToggleSwitch}"
                                           VerticalAlignment="Center" />
                     </Grid>
+
+                    <!-- Open Logs Folder Button -->
+                    <Grid Grid.Row="14" Margin="0,20,0,20">
+                        <Button x:Name="OpenLogsFolderButton"
+                                Width="Auto"
+                                Height="35"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="20 0 20 0"
+                                BorderBrush="{DynamicResource MahApps.Brushes.Gray7}"
+                                Background="Transparent"
+                                Click="OpenLogsFolder_Click">
+
+                            <Button.Resources>
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border" Color="{StaticResource MahApps.Colors.Gray7}" />
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.Focus" Color="{StaticResource MahApps.Colors.Gray7}" />
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.MouseOver" Color="{StaticResource MahApps.Colors.Gray5}" />
+                            </Button.Resources>
+
+                            <Grid HorizontalAlignment="Stretch" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Button}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <iconPacks:PackIconMaterial Kind="FolderOpen"
+                                                            Foreground="{DynamicResource MahApps.Brushes.Gray5}"
+                                                            Width="18"
+                                                            Height="18"
+                                                            VerticalAlignment="Center"
+                                                            Margin="10,0,0,0"
+                                                            Grid.Column="0" />
+
+                                <TextBlock Text="Open Logs Folder"
+                                           Foreground="{DynamicResource MahApps.Brushes.Gray6}"
+                                           FontWeight="SemiBold"
+                                           FontSize="12"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Grid.Column="1"
+                                           Margin="0,0,18,0" />
+                            </Grid>
+                        </Button>
+                    </Grid>
+
+                    <!-- Maintenance Section -->
+                    <Separator Grid.Row="15" Background="{StaticResource MahApps.Brushes.Gray.SemiTransparent}" Margin="0,10,0,20" />
+                    <TextBlock Grid.Row="16" Text="Maintenance" Foreground="{DynamicResource MahApps.Brushes.Accent}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15" />
+
+                    <!-- Reset To Factory Settings Button -->
+                    <Grid Grid.Row="17" Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,50,0">
+                            <TextBlock Text="Reset to factory settings" Foreground="{DynamicResource MahApps.Brushes.Gray6}" FontSize="14" />
+                            <TextBlock Text="Delete the application's current settings and replace them with the factory defaults." Foreground="{DynamicResource MahApps.Brushes.Gray7}" FontSize="12" TextWrapping="Wrap" Padding="0,0,200,0" />
+                        </StackPanel>
+
+                        <Button x:Name="ResetToFactorySettingsButton"
+                                Width="180"
+                                Height="35"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="0 0 0 0"
+                                BorderBrush="{DynamicResource MahApps.Brushes.Gray7}"
+                                Background="Transparent"
+                                Click="ResetToFactorySettings_Click">
+
+                            <Button.Resources>
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border" Color="{StaticResource MahApps.Colors.Gray7}" />
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.Focus" Color="{StaticResource MahApps.Colors.Gray7}" />
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.MouseOver" Color="{StaticResource MahApps.Colors.Gray5}" />
+                            </Button.Resources>
+
+                            <Grid HorizontalAlignment="Stretch" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Button}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <iconPacks:PackIconMaterial Kind="DeleteSweep"
+                                                            Foreground="{DynamicResource MahApps.Brushes.Gray5}"
+                                                            Width="18"
+                                                            Height="18"
+                                                            VerticalAlignment="Center"
+                                                            Margin="10,0,0,0"
+                                                            Grid.Column="0" />
+
+                                <TextBlock Text="Reset Settings"
+                                           Foreground="{DynamicResource MahApps.Brushes.Gray6}"
+                                           FontWeight="SemiBold"
+                                           FontSize="12"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Grid.Column="1"
+                                           Margin="0,0,18,0" />
+                            </Grid>
+                        </Button>
+                    </Grid>
+
+                    <!-- Open App Config Folder Button -->
+                    <Grid Grid.Row="18" Margin="0,20,0,20">
+                        <Button x:Name="OpenAppConfigFolderButton"
+                                Width="Auto"
+                                Height="35"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="20 0 20 0"
+                                BorderBrush="{DynamicResource MahApps.Brushes.Gray7}"
+                                Background="Transparent"
+                                Click="OpenAppConfigFolder_Click">
+
+                            <Button.Resources>
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border" Color="{StaticResource MahApps.Colors.Gray7}" />
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.Focus" Color="{StaticResource MahApps.Colors.Gray7}" />
+                                <SolidColorBrush x:Key="MahApps.Brushes.Button.Border.MouseOver" Color="{StaticResource MahApps.Colors.Gray5}" />
+                            </Button.Resources>
+
+                            <Grid HorizontalAlignment="Stretch" Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Button}}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <iconPacks:PackIconMaterial Kind="FolderOpen"
+                                                            Foreground="{DynamicResource MahApps.Brushes.Gray5}"
+                                                            Width="18"
+                                                            Height="18"
+                                                            VerticalAlignment="Center"
+                                                            Margin="10,0,0,0"
+                                                            Grid.Column="0" />
+
+                                <TextBlock Text="Open App Config Folder"
+                                           Foreground="{DynamicResource MahApps.Brushes.Gray6}"
+                                           FontWeight="SemiBold"
+                                           FontSize="12"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Grid.Column="1"
+                                           Margin="0,0,18,0" />
+                            </Grid>
+                        </Button>
+                    </Grid>
+
+
                 </Grid>
             </ScrollViewer>
 

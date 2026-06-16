@@ -7,6 +7,7 @@ using Microsoft.Win32;
 using Serilog;
 using System.Windows;
 using System.Windows.Controls;
+using Application = System.Windows.Application;
 
 namespace Metro_WPF_Template_App.Views.Flyouts
 {
@@ -59,11 +60,49 @@ namespace Metro_WPF_Template_App.Views.Flyouts
             await UpdateService.CheckForUpdatesAsync(AppUrls.UpdateUrl);
         }
 
-        // App Settings Button Click
+        // App Settings Button
         private void AppSettingsFlyout_Click(object? sender, RoutedEventArgs e)
         {
             _log.Debug("User clicked App Settings button.");
             ((MainWindowViewModel)DataContext).OpenAppSettingsFlyout();
+        }
+
+        // Open Logs Folder Button
+        private async void OpenLogsFolder_Click(object sender, RoutedEventArgs e)
+        {
+            await FolderService.OpenFolderAsync(AppConfig.appLogsFolder);
+        }
+
+        // Open App Config Folder Button
+        private async void OpenAppConfigFolder_Click(object sender, RoutedEventArgs e)
+        {
+            await FolderService.OpenFolderAsync(AppConfig.appConfigFolder);
+        }
+
+        // Factory Reset Settings Button
+        private async void ResetToFactorySettings_Click(object sender, RoutedEventArgs e)
+        {
+            _log.Debug("User clicked the Factory Reset Settings button.");
+
+            bool confirmReset = await MessageService.ShowYesNo("Factory Reset Settings", "Are you absolutely sure you want to reset all application settings back to factory defaults? This action cannot be undone.");
+
+            if (!confirmReset)
+            {
+                return;
+            }
+
+            bool success = AppSettingsService.ResetToFactoryDefaults();
+
+            if (success)
+            {
+                SyncUISelections();
+
+                await MessageService.ShowInfo("Reset Complete", "All application settings have been restored to factory defaults successfully.");
+            }
+            else
+            {
+                await MessageService.ShowError("An unexpected error occurred while attempting to wipe your configuration profile.");
+            }
         }
 
         // ============ App Settings Event Handlers ============
@@ -137,6 +176,24 @@ namespace Metro_WPF_Template_App.Views.Flyouts
             }
         }
 
+        // Always On Top Toggled
+        private void AlwaysOnTopToggle_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (!MainWindow._isLoaded || AppSettingsService.CurrentSettings == null) return;
+
+            bool isOn = AlwaysOnTopToggle.IsOn;
+            _log.Information("User flipped the Always on Top Toggle to: {Status}", isOn);
+
+            AppSettingsService.CurrentSettings.AlwaysOnTop = isOn;
+            AppSettingsService.SaveAppSettings(AppSettingsService.CurrentSettings);
+
+            if (Application.Current.MainWindow is Window mainWindow)
+            {
+                mainWindow.Topmost = isOn;
+                _log.Debug("MainWindow Topmost property set to: {State}", isOn);
+            }
+        }
+
         // Enable Debug Logging Toggled
         private void EnableDebugLoggingToggle_Toggled(object sender, RoutedEventArgs e)
         {
@@ -149,7 +206,6 @@ namespace Metro_WPF_Template_App.Views.Flyouts
             AppSettingsService.CurrentSettings.EnableDebugLogging = isOn;
             AppSettingsService.SaveAppSettings(AppSettingsService.CurrentSettings);
 
-            // Changed to use local _log instance to cleanly populate [MainWindowFlyoutsView] context metadata
             _log.Information("User flipped the Enable Debug Logging Toggle to: {Status}", isOn);
         }
 
@@ -181,17 +237,22 @@ namespace Metro_WPF_Template_App.Views.Flyouts
 
             _log.Debug("Synchronizing UI elements.");
 
-            // Sync Check For Updates Toggle
-            CheckAppUpdatesToggle.IsOn = settings.CheckForUpdatesOnStartup;
+            // Sync UI Toggles
             StartWithWindowsToggle.IsOn = settings.StartWithWindows;
+            AlwaysOnTopToggle.IsOn = settings.AlwaysOnTop;
+
+            CheckAppUpdatesToggle.IsOn = settings.CheckForUpdatesOnStartup;
             EnableDebugLoggingToggle.IsOn = settings.EnableDebugLogging;
 
             // Sync Base Theme Dropdown (Light/Dark)
             //BaseThemeDropdown.SelectedItem = settings.BaseTheme;
 
             // Sync Accent Color Dropdown (Blue/Lime/Indigo/etc.)
-            AccentColorDropdown.SelectedItem = ThemeService.AvailableAccents
-                .FirstOrDefault(t => string.Equals(t.ColorScheme, settings.AccentColor, StringComparison.OrdinalIgnoreCase));
+            AccentColorDropdown.SelectedItem = ThemeService.AvailableAccents.FirstOrDefault(t => string.Equals(t.ColorScheme, settings.AccentColor, StringComparison.OrdinalIgnoreCase));
         }
+
+        // ============ General Helpers ============
+
+        // End of Class
     }
 }

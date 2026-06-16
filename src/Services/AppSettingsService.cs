@@ -99,5 +99,38 @@ namespace Metro_WPF_Template_App.Services
                 _log.Error(ex, "Failed to serialize or write application configuration settings to disk.");
             }
         }
+
+        // Reset AppSettings.json To Factory Defaults
+        public static bool ResetToFactoryDefaults()
+        {
+            _log.Warning("Factory reset sequence initiated by user request.");
+
+            try
+            {
+                if (File.Exists(AppConfig.appSettingsPath))
+                {
+                    File.Delete(AppConfig.appSettingsPath);
+                    _log.Information("Successfully deleted AppSettings.json file from disk.");
+                }
+                else
+                {
+                    _log.Debug("AppSettings.json file did not exist on disk. Creating one instead.");
+                }
+
+                CurrentSettings = new AppSettings();
+                _log.Debug("Application configuration restored to factory defaults.");
+
+                SaveAppSettings(CurrentSettings);
+
+                _log.Information("Application factory reset sequence completed successfully.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex, "An error occurred during the application factory reset sequence.");
+                return false;
+            }
+        }
+
     }
 }

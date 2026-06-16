@@ -11,7 +11,7 @@ namespace Metro_WPF_Template_App.Common.Constants
     public class AppConfig
     {
         // App Name
-        public static readonly string AppName = Assembly.GetExecutingAssembly().GetName().Name ?? "Generic-AriesLR-App";
+        public static readonly string AppName = Assembly.GetExecutingAssembly().GetName().Name ?? "Generic-AriesLR-App"; // Fallback to "Generic-AriesLR-App"
 
         // App Author
         public static readonly string AppAuthor = "AriesLR";
@@ -19,7 +19,7 @@ namespace Metro_WPF_Template_App.Common.Constants
         // App Version
         public static string TitleAppVersion => $"v{Assembly.GetExecutingAssembly().GetName().Version}";
 
-        public static readonly string AppVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion ?? "0.0.0";
+        public static readonly string AppVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion ?? "0.0.0"; // Fallback to v0.0.0
 
         // App Config Paths
         public static readonly string appConfigFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), AppAuthor, AppName);

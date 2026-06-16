@@ -8,6 +8,7 @@
                  xmlns:constants="clr-namespace:Metro_WPF_Template_App.Common.Constants"
                  xmlns:viewmodels="clr-namespace:Metro_WPF_Template_App.ViewModels"
                  xmlns:flyouts="clr-namespace:Metro_WPF_Template_App.Views.Flyouts"
+                 xmlns:navigation="clr-namespace:Metro_WPF_Template_App.Views.Navigation"
                  d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
                  Title="{Binding Source={x:Static constants:AppConfig.TitleAppVersion}, StringFormat='Metro-WPF-Template-App \{0\}'}"
                  Width="1200"
@@ -60,98 +61,26 @@
 
     <Grid>
         <mah:SplitView x:Name="SplitView" DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="250" PaneBackground="Transparent">
-            <!-- ================ Sidebar Navigation ================ -->
+            <!-- ================ Sidebar Navigation START ================ -->
             <mah:SplitView.Pane>
-                <Border BorderBrush="{DynamicResource MahApps.Brushes.Accent3}" BorderThickness="0 0 1 0">
-                    <!-- To enable the top sidebar items (MenuItems) replace ItemsSource="{x:Null}" with ItemsSource="{Binding MenuItems}" -->
-                    <mah:HamburgerMenu Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                                       IsPaneOpen="{Binding IsPaneOpen, ElementName=SplitView, Mode=TwoWay}" CompactPaneLength="50" OpenPaneLength="250"
-                                       PaneBackground="{DynamicResource MahApps.Brushes.Accent}" Foreground="{DynamicResource MahApps.Brushes.Gray1}"
-                                       HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                                       Background="Transparent" Width="250"
-
-                                       ItemTemplate="{DynamicResource MenuTemplate}"
-                                       ItemContainerStyle="{DynamicResource ItemStyle}"
-                                       ItemsSource="{x:Null}"
-
-                                       OptionsItemTemplate="{DynamicResource MenuTemplate}"
-                                       OptionsItemContainerStyle="{DynamicResource ItemStyle}"
-                                       OptionsItemsSource="{Binding OptionsMenuItems}">
-
-                        <mah:HamburgerMenu.Resources>
-                            <SolidColorBrush x:Key="MahApps.HamburgerMenu.Pane.Foreground" Color="{DynamicResource MahApps.Colors.Gray1}" />
-
-                            <DataTemplate x:Key="MenuTemplate">
-                                <Button Command="{Binding Command}"
-                                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                        HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                                        Background="Transparent" BorderThickness="0">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
-                                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-
-                                                <iconPacks:PackIconMaterial Width="25" Height="25"
-                                                                            Foreground="{DynamicResource MahApps.Brushes.Gray1}"
-                                                                            Kind="{Binding Icon}"
-                                                                            VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                                            Margin="12,10,10,10" Grid.Column="0">
-                                                    <iconPacks:PackIconMaterial.ToolTip>
-                                                        <TextBlock><Run Text="{Binding Text}" /></TextBlock>
-                                                    </iconPacks:PackIconMaterial.ToolTip>
-                                                </iconPacks:PackIconMaterial>
-
-                                                <TextBlock Text="{Binding Text}"
-                                                           Foreground="{DynamicResource MahApps.Brushes.Gray1}"
-                                                           FontSize="16" FontWeight="Bold"
-                                                           VerticalAlignment="Center" HorizontalAlignment="Left"
-                                                           Margin="5,10,10,10" Grid.Column="1" />
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                            </DataTemplate>
-
-                            <Style x:Key="ItemStyle" TargetType="ListBoxItem">
-                                <Setter Property="Background" Value="Transparent" />
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                <Setter Property="VerticalContentAlignment" Value="Center" />
-                                <Setter Property="Padding" Value="5" />
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ListBoxItem">
-                                            <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                            </Grid>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="RootGrid" Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </mah:HamburgerMenu.Resources>
-                    </mah:HamburgerMenu>
-                </Border>
+                <navigation:MainSidebarView />
             </mah:SplitView.Pane>
+            <!-- ================ Sidebar Navigation END ================ -->
 
-            <!-- ================  Main Content ================ -->
+            <!-- ================  Main Content START ================ -->
             <mah:SplitView.Content>
                 <Grid>
+                    <!-- Main Content Goes HERE -->
                 </Grid>
             </mah:SplitView.Content>
             <!-- ================  Main Content END ================ -->
         </mah:SplitView>
     </Grid>
 
-    <!-- ================  Flyouts ================ -->
+    <!-- ================  Flyouts START ================ -->
     <mah:MetroWindow.Flyouts>
         <flyouts:MainWindowFlyoutsView />
     </mah:MetroWindow.Flyouts>
     <!-- ================  Flyouts END ================ -->
+    
 </mah:MetroWindow>
